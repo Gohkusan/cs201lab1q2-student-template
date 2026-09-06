@@ -64,17 +64,67 @@ public class SinglyLinkedList<E> {
         }
         return answer;
     }
-
+    /**
+     * Write a method named toString to print out the elements starting from the head element  
+    • Write a method named removeLast that removes the last element 
+    • Write a method named reverse that reverses the sequence of all the elements  
+     */
     // Write your codes below
     public String toString(){
-     
+     // 0 1 2 boundary
+        if (size == 0) {
+            return "";
+        } else {
+            String result = "";
+            Node<E>walk = head;
+            while(walk != null) {
+                result += walk.getElement();
+                walk = walk.getNext();
+            }
+            return result;
+        }
     }
 
     public E removeLast(){
-      
+        // 0 1 2 boundary
+        E result = null;
+        if (tail == null) {
+            return null;
+        } else {
+            if (head == tail) {
+                head = null;
+                tail = head;
+                size--;
+            } else {
+                Node<E> walk = head;
+                while (walk.getNext() != tail) {
+                    walk = walk.getNext();
+                }
+                result = tail.getElement();
+                tail = walk;
+                walk.setNext(null);
+                size--;
+                return result;
+            }
+        }
+        return result;
     }
 
-    public void reverse(){       
-                 
+    public void reverse(){    
+        // 0 1 2 boundary
+        if (tail == null || tail == head) {
+            return;
+        } else {
+            SinglyLinkedList<E> result = new SinglyLinkedList<>();
+            // removefirst then build reverse list
+            Node<E> walk = head;
+            // 123 -> 321
+            while(walk != null) {
+                result.addFirst(walk.getElement());
+                walk = walk.getNext();
+            }
+            head = result.head;
+            tail = result.tail;
+        }   
     }
 }
