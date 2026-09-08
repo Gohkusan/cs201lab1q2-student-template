@@ -92,6 +92,7 @@ public class SinglyLinkedList<E> {
             return null;
         } else {
             if (head == tail) {
+                result = head.getElement();
                 head = null;
                 tail = head;
                 size--;
